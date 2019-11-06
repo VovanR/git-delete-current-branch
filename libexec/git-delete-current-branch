@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+#
+# https://github.com/vovanr/git-delete-current-branch
+#
+# Usage: git-delete-current-branch
+
+
+fn () {
+    local status branch
+
+    status="$(git status 2>/dev/null)"
+
+    [[ $? != 0 ]] && return;
+
+    branch="$(git branch | perl -ne '/^\* (.*)/ && print $1')"
+
+    git fetch origin master:master;
+    git checkout master;
+    git branch -d ${branch};
+}
+
+fn
+
+
+# Debug
+# echo -e "\n"
+# echo -e "script:\t"$0
+# echo -e "arguments.lenght:\t"$#
+# echo -e "is previous running is successful ( 0 - successful ):\t"$?
+# echo -e "PID:\t"$$
+# echo -e "last PID:\t"$!
+# echo -e "all arguments:\t"$*
+# echo -e "all arguments2:\t"$@
+# echo -e "last argument of last sh:\t"$_
+
+
+echo -e "Successful execution"
+exit 0
+# Return 0
+# Exit Status: Success
