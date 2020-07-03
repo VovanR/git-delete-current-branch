@@ -15,7 +15,7 @@ fn () {
     branch="$(git branch | perl -ne '/^\* (.*)/ && print $1')"
 
     git fetch origin master:master;
-    git checkout master;
+    git switch master;
     git branch -d ${branch};
 }
 
