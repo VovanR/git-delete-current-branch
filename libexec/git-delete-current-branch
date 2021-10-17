@@ -17,6 +17,7 @@ fn () {
     git fetch origin master:master;
     git switch master;
     git branch -d ${branch};
+    git remote prune origin;
 }
 
 fn
